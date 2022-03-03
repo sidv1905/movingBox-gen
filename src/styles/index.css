@@ -6,6 +6,13 @@ body {
   background-color: #191f27;
   color: white;
 }
+
+body,
+#root,
+html {
+  height: 100%;
+  width: 100%;
+}
 *,
 *::after,
 *::before {

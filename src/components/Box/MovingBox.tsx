@@ -1,12 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import styles from "../styles/box.module.scss";
-export default function MovingBox() {
+import styles from "../../styles/box.module.scss";
+
+interface BoxProps {
+  zIndex: number;
+  positionInArray: number;
+  removeBox: (boxIndexToremove: number) => void;
+}
+
+export default function MovingBox({ zIndex, positionInArray }: BoxProps) {
   const [pressed, setPressed] = useState(false);
   const [selected, setSelected] = useState(false);
   const position = useRef({ x: 0, y: 0 });
 
   const boxRef = useRef<HTMLDivElement>(null);
-
+  useEffect(() => {
+    boxRef.current.style.zIndex = zIndex.toString();
+  }, []);
   function handleMouseDown() {
     console.log("mouse down");
     setPressed(true);

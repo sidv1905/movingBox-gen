@@ -1,15 +1,13 @@
 import { useState } from "react";
 
 import "../styles/App.css";
-import MovingBox from "../components/MovingBox";
+import MovingBox from "../components/Box/MovingBox";
+import MovingBoxContainer from "../components/Box/MovingBoxContainer";
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
-    <h1>Moving Box App</h1>
-      <MovingBox/>
-      <button onClick={() => setCount(count + 1)}>Add</button>
+      <h1>Moving Box App</h1>
+      <MovingBoxContainer />
     </div>
   );
 }
