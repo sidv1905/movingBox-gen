@@ -49,38 +49,48 @@ export default function MovingBox({
     // console.log(e.clientY, "client Y top se");
     // console.log(e.clientX, "client X from right");
     // console.log(e.clientY, "client Y from bottom");
+    console.log(e.movementX, "movement X");
+    console.log(e.movementY, "movement Y");
     if (e.clientX < leftRestriction) {
       console.log("left violation");
-      position.current = {
-        x: position.current.x + e.movementX,
-        y: position.current.y + e.movementY,
-      };
+      if (e.movementX != -1) {
+        position.current = {
+          x: position.current.x + e.movementX,
+          y: position.current.y + e.movementY,
+        };
 
-      MoveTheBoxTransform(position.current.x, position.current.y);
+        MoveTheBoxTransform(position.current.x, position.current.y);
+      }
     } else if (e.clientX > rightRestriction) {
       console.log("right violation");
-      position.current = {
-        x: position.current.x + e.movementX,
-        y: position.current.y + e.movementY,
-      };
+      if (e.movementX != 1) {
+        position.current = {
+          x: position.current.x + e.movementX,
+          y: position.current.y + e.movementY,
+        };
 
-      MoveTheBoxTransform(position.current.x, position.current.y);
+        MoveTheBoxTransform(position.current.x, position.current.y);
+      }
     } else if (e.clientY < topRestriction) {
       console.log("top violation");
-      position.current = {
-        x: position.current.x + e.movementX,
-        y: position.current.y + e.movementY,
-      };
+      if (e.movementY != -1) {
+        position.current = {
+          x: position.current.x + e.movementX,
+          y: position.current.y + e.movementY,
+        };
 
-      MoveTheBoxTransform(position.current.x, position.current.y);
+        MoveTheBoxTransform(position.current.x, position.current.y);
+      }
     } else if (e.clientY > bottomRestriction) {
       console.log("bottom violation");
-      position.current = {
-        x: position.current.x + e.movementX,
-        y: position.current.y + e.movementY,
-      };
+      if (e.movementY != 1) {
+        position.current = {
+          x: position.current.x + e.movementX,
+          y: position.current.y + e.movementY,
+        };
 
-      MoveTheBoxTransform(position.current.x, position.current.y);
+        MoveTheBoxTransform(position.current.x, position.current.y);
+      }
     } else {
       console.log("NO  violation");
       position.current = {
