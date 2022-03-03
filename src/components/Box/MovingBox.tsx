@@ -15,6 +15,7 @@ export default function MovingBox({
   const [pressed, setPressed] = useState(false);
   const [selected, setSelected] = useState(false);
   const position = useRef({ x: 0, y: 0 });
+  const parent = useRef();
 
   const boxRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -27,13 +28,68 @@ export default function MovingBox({
   }
 
   function handleMouseMove(e: any) {
-    position.current = {
-      x: position.current.x + e.movementX,
-      y: position.current.y + e.movementY,
-    };
+    console.log(boxRef.current?.parentElement, "parent");
 
-    boxRef.current.style.transform = `translate(${position.current.x}px,${position.current.y}px)`;
-    console.log("Mouse move");
+    const parent = boxRef.current?.parentElement;
+
+    const parentRect = parent?.getBoundingClientRect();
+    const childRect = boxRef.current?.getBoundingClientRect();
+
+    const leftRestriction = parentRect?.left + (e.clientX - childRect?.left);
+    const rightRestriction = parentRect?.right + (e.clientX - childRect?.right);
+    const topRestriction = parentRect?.top + (e.clientY - childRect?.top);
+    const bottomRestriction =
+      parentRect?.bottom + (e.clientY - childRect?.bottom);
+
+    // console.log(rightRestriction, "right rESTRICTION");
+    // console.log(leftRestriction, "left rESTRICTION");
+    // console.log(topRestriction, "top rESTRICTION");
+    // console.log(bottomRestriction, "bottom rESTRICTION");
+    // console.log(e.clientX, "client X left se");
+    // console.log(e.clientY, "client Y top se");
+    // console.log(e.clientX, "client X from right");
+    // console.log(e.clientY, "client Y from bottom");
+    if (e.clientX < leftRestriction) {
+      console.log("left violation");
+      position.current = {
+        x: position.current.x + e.movementX,
+        y: position.current.y + e.movementY,
+      };
+
+      MoveTheBoxTransform(position.current.x, position.current.y);
+    } else if (e.clientX > rightRestriction) {
+      console.log("right violation");
+      position.current = {
+        x: position.current.x + e.movementX,
+        y: position.current.y + e.movementY,
+      };
+
+      MoveTheBoxTransform(position.current.x, position.current.y);
+    } else if (e.clientY < topRestriction) {
+      console.log("top violation");
+      position.current = {
+        x: position.current.x + e.movementX,
+        y: position.current.y + e.movementY,
+      };
+
+      MoveTheBoxTransform(position.current.x, position.current.y);
+    } else if (e.clientY > bottomRestriction) {
+      console.log("bottom violation");
+      position.current = {
+        x: position.current.x + e.movementX,
+        y: position.current.y + e.movementY,
+      };
+
+      MoveTheBoxTransform(position.current.x, position.current.y);
+    } else {
+      console.log("NO  violation");
+      position.current = {
+        x: position.current.x + e.movementX,
+        y: position.current.y + e.movementY,
+      };
+
+      MoveTheBoxTransform(position.current.x, position.current.y);
+    }
   }
 
   function MoveTheBoxTransform(x, y) {
