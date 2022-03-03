@@ -6,7 +6,11 @@ body {
   background-color: #191f27;
   color: white;
 }
-
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
 :root {
   --main-colour: #654de4;
   --text-color: #191f27;
