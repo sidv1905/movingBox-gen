@@ -1,5 +1,9 @@
 import React from "react";
 
-export default function AddButton() {
-  return <button>AddButton</button>;
+interface AddButtonProps {
+  addBox: () => void;
+}
+
+export default function AddButton({ addBox }: AddButtonProps) {
+  return <button onClick={addBox}>AddButton</button>;
 }

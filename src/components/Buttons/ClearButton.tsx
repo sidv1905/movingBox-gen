@@ -1,5 +1,7 @@
 import React from "react";
-
-export default function ClearButton() {
-  return <button>ClearButton</button>;
+interface ClearButtonProps {
+  reset: () => void;
+}
+export default function ClearButton({ reset }: ClearButtonProps) {
+  return <button onClick={reset}>ClearButton</button>;
 }

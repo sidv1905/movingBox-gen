@@ -25,6 +25,15 @@ export default function MovingBoxContainer() {
     newBoxList.splice(boxIndexToremove, 1);
     setMovingBoxList(newBoxList);
   }
+
+  function reset() {
+    setMovingBoxList([
+      {
+        zIndex: 1,
+        key: 1,
+      },
+    ]);
+  }
   return (
     <>
       {movingBoxList.map((box, index) => {
@@ -37,8 +46,8 @@ export default function MovingBoxContainer() {
           />
         );
       })}
-      <AddButton />
-      <ClearButton />
+      <AddButton addBox={addBox} />
+      <ClearButton reset={reset} />
     </>
   );
 }
