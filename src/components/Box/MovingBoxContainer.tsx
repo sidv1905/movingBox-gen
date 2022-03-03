@@ -22,7 +22,9 @@ export default function MovingBoxContainer() {
   }
   function removeBox(boxIndexToremove: number): void {
     const newBoxList = [...movingBoxList];
+    console.log(newBoxList, "before");
     newBoxList.splice(boxIndexToremove, 1);
+    console.log(newBoxList, "after removal");
     setMovingBoxList(newBoxList);
   }
 

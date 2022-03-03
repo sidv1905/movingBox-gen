@@ -7,7 +7,11 @@ interface BoxProps {
   removeBox: (boxIndexToremove: number) => void;
 }
 
-export default function MovingBox({ zIndex, positionInArray }: BoxProps) {
+export default function MovingBox({
+  zIndex,
+  positionInArray,
+  removeBox,
+}: BoxProps) {
   const [pressed, setPressed] = useState(false);
   const [selected, setSelected] = useState(false);
   const position = useRef({ x: 0, y: 0 });
@@ -53,6 +57,7 @@ export default function MovingBox({ zIndex, positionInArray }: BoxProps) {
   }, [pressed]);
 
   function handleKeyDown(e) {
+    e.preventDefault();
     console.log("key down");
     switch (e.keyCode) {
       case 37:
@@ -71,6 +76,11 @@ export default function MovingBox({ zIndex, positionInArray }: BoxProps) {
         position.current.y += 10;
         MoveTheBoxTransform(position.current.x, position.current.y);
         break;
+      case 46:
+        if (selected) {
+          removeBox(positionInArray);
+        }
+
       default:
         break;
     }
