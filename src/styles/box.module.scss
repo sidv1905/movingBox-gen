@@ -4,6 +4,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  -webkit-box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.26);
+  box-shadow: 4px 4px 4px 0px rgba(255, 255, 255, 0.86);
   background-image: linear-gradient(
     to right top,
     #082247,
@@ -53,4 +56,8 @@
   align-items: center;
   justify-content: space-between;
   width: 50%;
+}
+.movingBox .bottom .left div > div:first-child,
+.top {
+  color: var(--text-color-secondary);
 }

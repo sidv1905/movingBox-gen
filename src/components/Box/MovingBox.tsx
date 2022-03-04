@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/box.module.scss";
 import visaLogo from "../../assets/images/visa.svg";
+import circle from "../.../assets/images/circle.svg";
 interface BoxProps {
   zIndex: number;
   positionInArray: number;
@@ -103,7 +104,7 @@ export default function MovingBox({
       }
     >
       <div className={styles.top}>Credit</div>
-      <div className={styles.middle}>0825 2313 589 7</div>
+      <div className={styles.middle}>1860 2000 9000 7865</div>
 
       <div className={styles.bottom}>
         <div className={styles.left}>
@@ -117,7 +118,7 @@ export default function MovingBox({
           </div>
         </div>
         <div className={styles.right}>
-          <img src={visaLogo} height={80} width={80} alt="visa" />
+          <img src={visaLogo} height={70} width={80} alt="visa" />
         </div>
       </div>
     </div>

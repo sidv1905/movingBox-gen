@@ -24,5 +24,5 @@ html,
   --main-colour: #082247;
   --main-colour-secondary: #f9f9f9;
   --text-color: #ffffff;
-  --text-color-secondary: #6a7a8f;
+  --text-color-secondary: rgba(255, 255, 255, 0.7);
 }
