@@ -3,7 +3,7 @@
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  background-color: #191f27;
+  background-color: black;
   color: white;
 }
 
@@ -21,6 +21,8 @@ html,
   box-sizing: border-box;
 }
 :root {
-  --main-colour: #654de4;
-  --text-color: #191f27;
+  --main-colour: #082247;
+  --main-colour-secondary: #f9f9f9;
+  --text-color: #ffffff;
+  --text-color-secondary: #6a7a8f;
 }

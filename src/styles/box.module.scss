@@ -1,11 +1,56 @@
 .movingBox {
-  width: 10em;
-  height: 10em;
-  background-color: #f00;
-  border: 1px solid white;
+  width: 25em;
+  height: 15em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: linear-gradient(
+    to right top,
+    #082247,
+    #08244a,
+    #1c3f74,
+    #092751,
+    #0a2955,
+    #0a2a57,
+    #0a2b58,
+    #0a2c5a,
+    #0a2c5a,
+    #092d5a,
+    #092d5a,
+    #092d5a
+  );
+  border: 1px solid #082247;
   user-select: none;
   cursor: pointer;
+
+  border-radius: 20px;
+  padding: 15px;
 }
 .selectedBox {
-  border: 3px solid blue;
+  border: 3px solid var(--text-color);
+}
+.movingBox .top {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+.movingBox .middle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+.movingBox .bottom {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.movingBox .bottom .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
 }
