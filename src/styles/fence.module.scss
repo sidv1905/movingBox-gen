@@ -1,5 +1,18 @@
 .Fence {
-  width: 120vh;
+  width: 100%;
   height: 100vh;
-  border: 20px solid transparent;
+  border: 7px solid red;
+  transition: all 1s ease-in;
+}
+
+.activateFence {
+  animation: ease-in-out 1s infinite alternate fencealarm;
+}
+@keyframes fencealarm {
+  from {
+    border-color: red;
+  }
+  to {
+    border-color: green;
+  }
 }
