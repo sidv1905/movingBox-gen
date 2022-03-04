@@ -21,7 +21,6 @@ export default function useKeyboardHandler({
   positionInArray,
   checkboxCheck,
 }: Props) {
-  console.log(checkboxCheck, "CHECKBOX VALUE");
   const throttler = useThrottle();
   useEffect(() => {
     if (selected) {
