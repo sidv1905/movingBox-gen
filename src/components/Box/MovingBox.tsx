@@ -25,7 +25,7 @@ export default function MovingBox({
     boxRef.current.style.top = zIndex * 100 + "px";
     boxRef.current.style.left = zIndex * 100 + "px";
   }, []);
-  function handleMouseDown(e: MouseEventInit) {
+  function handleMouseDown(e: any) {
     setPressed(true);
     setSelected(!selected);
   }
