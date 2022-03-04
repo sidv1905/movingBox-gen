@@ -22,6 +22,8 @@ export default function MovingBox({
   const boxRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     boxRef.current.style.zIndex = zIndex.toString();
+    boxRef.current.style.top = zIndex * 100 + "px";
+    boxRef.current.style.left = zIndex * 100 + "px";
   }, []);
   function handleMouseDown(e) {
     setPressed(true);
@@ -44,6 +46,30 @@ export default function MovingBox({
     console.log("mouse up");
     setPressed(false);
   }
+  function verifyPosition() {
+    console.log("verify position");
+    console.log(position.current);
+    console.log(boxRef.current?.getBoundingClientRect(), "box rect");
+    console.log(window.innerWidth, "window width");
+    console.log(window.innerHeight, "window height");
+
+    const { left, right, bottom, top, width, height } =
+      boxRef.current?.getBoundingClientRect();
+    if (left < 0) {
+      console.log("left violation bounds");
+      return 0;
+    } else if (right > window.innerWidth) {
+      console.log("right violation bounds");
+      return 1;
+    } else if (top < 0) {
+      console.log("top violation bounds");
+      return 2;
+    } else if (bottom > window.innerHeight) {
+      console.log("bottom violation bounds");
+      return 3;
+    }
+    return 4;
+  }
   useEffect(() => {
     if (pressed) {
       console.log("moving");
@@ -60,22 +86,42 @@ export default function MovingBox({
   function handleKeyDown(e) {
     e.preventDefault();
     console.log("key down");
+    verifyPosition();
     switch (e.keyCode) {
       case 37:
-        position.current.x -= 10;
-        MoveTheBoxTransform(position.current.x, position.current.y);
+        if (verifyPosition() !== 0) {
+          position.current.x -= 10;
+          MoveTheBoxTransform(position.current.x, position.current.y);
+        } else {
+          console.log("left violation bounds");
+        }
+
         break;
       case 38:
-        position.current.y -= 10;
-        MoveTheBoxTransform(position.current.x, position.current.y);
+        if (verifyPosition() !== 2) {
+          position.current.y -= 10;
+          MoveTheBoxTransform(position.current.x, position.current.y);
+        } else {
+          console.log("top violation bounds");
+        }
+
         break;
       case 39:
-        position.current.x += 10;
-        MoveTheBoxTransform(position.current.x, position.current.y);
+        if (verifyPosition() !== 1) {
+          position.current.x += 10;
+          MoveTheBoxTransform(position.current.x, position.current.y);
+        } else {
+          console.log("right violation bounds");
+        }
         break;
       case 40:
-        position.current.y += 10;
-        MoveTheBoxTransform(position.current.x, position.current.y);
+        if (verifyPosition() !== 3) {
+          position.current.y += 10;
+          MoveTheBoxTransform(position.current.x, position.current.y);
+        } else {
+          console.log("bottom violation bounds");
+        }
+
         break;
       case 46:
         if (selected) {
