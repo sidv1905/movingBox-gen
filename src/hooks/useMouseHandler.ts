@@ -8,8 +8,6 @@ export default function useMouseHandler({ selected, setSelected }: Props) {
 
   useEffect(() => {
     if (pressed) {
-      console.log("moving");
-
       document.addEventListener("mouseup", handleMouseUp);
     }
 
@@ -23,7 +21,6 @@ export default function useMouseHandler({ selected, setSelected }: Props) {
     setSelected(!selected);
   }
   function handleMouseUp() {
-    console.log("mouse up");
     setPressed(false);
   }
 

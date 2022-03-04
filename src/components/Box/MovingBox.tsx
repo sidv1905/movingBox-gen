@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "../../styles/box.module.scss";
 import visaLogo from "../../assets/images/visa.svg";
 import useKeyboardHandler from "../../hooks/useKeyboardHandler";
@@ -36,19 +36,25 @@ export default function MovingBox({
   });
 
   useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (boxRef.current && !boxRef.current.contains(event.target)) {
+        setSelected(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  useLayoutEffect(() => {
     boxRef.current.style.zIndex = zIndex.toString();
     boxRef.current.style.top = zIndex * 100 + "px";
     boxRef.current.style.left = zIndex * 100 + "px";
   }, []);
 
-  useEffect(() => {
-    if (selected) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [selected]);
   return (
     <div
       ref={boxRef}

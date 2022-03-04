@@ -18,26 +18,25 @@ export default function useKeyboardHandler({
   removeBox,
   positionInArray,
 }: Props) {
+  useEffect(() => {
+    if (selected) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selected]);
+
   function verifyPosition() {
-    console.log("verify position");
-
-    console.log(boxRef.current?.getBoundingClientRect(), "box rect");
-    console.log(window.innerWidth, "window width");
-    console.log(window.innerHeight, "window height");
-
     const { left, right, bottom, top, width, height }: any =
       boxRef.current?.getBoundingClientRect();
     if (left < 0) {
-      console.log("left violation bounds");
       return 0;
     } else if (right > window.innerWidth) {
-      console.log("right violation bounds");
       return 1;
     } else if (top < 0) {
-      console.log("top violation bounds");
       return 2;
     } else if (bottom > window.innerHeight) {
-      console.log("bottom violation bounds");
       return 3;
     }
     return 4;
@@ -48,7 +47,7 @@ export default function useKeyboardHandler({
 
   function handleKeyDown(e: KeyboardEvent) {
     e.preventDefault();
-    console.log("key down");
+
     verifyPosition();
     switch (e.keyCode) {
       case 37:
