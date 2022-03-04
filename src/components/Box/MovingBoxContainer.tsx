@@ -15,8 +15,7 @@ export default function MovingBoxContainer() {
       key: 1,
     },
   ]);
-  console.log(movingBoxList, "MOVING BOX LIST AFTER REMOVAL");
-
+  // To add box
   function addBox() {
     setMovingBoxList([
       ...movingBoxList,
@@ -26,19 +25,21 @@ export default function MovingBoxContainer() {
       },
     ]);
   }
+
+  // TO remove box by index
   function removeBox(boxIndexToremove: number): void {
-    console.log(boxIndexToremove, "boxIndexToremove");
     const newBoxList = [...movingBoxList];
 
     newBoxList.splice(boxIndexToremove, 1);
 
     setMovingBoxList(newBoxList);
   }
-
+  // TO reset box t initial state
   function reset() {
     setMovingBoxList([
       {
         zIndex: 1,
+        key: 1,
       },
     ]);
   }

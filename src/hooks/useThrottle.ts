@@ -1,5 +1,5 @@
 import { useRef } from "react";
-
+// Returns a function which accepts a callback and returns a function
 export default function useThrottle() {
   const throttled = useRef(false);
 

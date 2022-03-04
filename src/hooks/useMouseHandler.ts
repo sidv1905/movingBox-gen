@@ -15,11 +15,12 @@ export default function useMouseHandler({ selected, setSelected }: Props) {
       document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [pressed]);
-
+  // Handles mouse down event
   function handleMouseDown(e: React.MouseEvent) {
     setPressed(true);
     setSelected(!selected);
   }
+  // Handles mouse up event
   function handleMouseUp() {
     setPressed(false);
   }

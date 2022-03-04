@@ -35,7 +35,7 @@ export default function MovingBox({
     selected,
     setSelected,
   });
-
+  // To handle the oustide click mouse event
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (boxRef.current && !boxRef.current.contains(event.target)) {
@@ -49,7 +49,7 @@ export default function MovingBox({
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
+  // useLayoutEffect is used to handle the position of the box, and other events, so used for top left and zindex
   useLayoutEffect(() => {
     boxRef.current.style.zIndex = zIndex.toString();
     boxRef.current.style.top = zIndex * 100 + "px";

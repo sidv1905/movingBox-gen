@@ -28,7 +28,7 @@ export default function useKeyboardHandler({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [selected]);
-
+  // Checks if inside the box
   function verifyPosition() {
     const { left, right, bottom, top, width, height }: any =
       boxRef.current?.getBoundingClientRect();
@@ -43,10 +43,11 @@ export default function useKeyboardHandler({
     }
     return 4;
   }
+  //Moves the bos by changing 3d transform
   function MoveTheBoxTransform(x: number, y: number): void {
     boxRef.current.style.transform = `translate(${x}px,${y}px)`;
   }
-
+  // Handles key down event
   function handleKeyDown(e: KeyboardEvent) {
     e.preventDefault();
     function moveBox() {
