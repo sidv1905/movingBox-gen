@@ -55,8 +55,6 @@ export default function useKeyboardHandler({
         if (verifyPosition() !== DIRECTIONS.LEFT) {
           position.current.x -= 10;
           MoveTheBoxTransform(position.current.x, position.current.y);
-        } else {
-          console.log("left violation bounds");
         }
 
         break;
@@ -64,8 +62,6 @@ export default function useKeyboardHandler({
         if (verifyPosition() !== DIRECTIONS.TOP) {
           position.current.y -= 10;
           MoveTheBoxTransform(position.current.x, position.current.y);
-        } else {
-          console.log("top violation bounds");
         }
 
         break;
@@ -73,16 +69,12 @@ export default function useKeyboardHandler({
         if (verifyPosition() !== DIRECTIONS.RIGHT) {
           position.current.x += 10;
           MoveTheBoxTransform(position.current.x, position.current.y);
-        } else {
-          console.log("right violation bounds");
         }
         break;
       case 40:
         if (verifyPosition() !== DIRECTIONS.BOTTOM) {
           position.current.y += 10;
           MoveTheBoxTransform(position.current.x, position.current.y);
-        } else {
-          console.log("bottom violation bounds");
         }
 
         break;
