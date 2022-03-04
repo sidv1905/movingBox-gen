@@ -29,6 +29,10 @@
 
   border-radius: 20px;
   padding: 15px;
+  transition: transform 0.2s ease-in;
+  &:hover {
+    transform: scale(1.05) rotate(2deg);
+  }
 }
 .selectedBox {
   border: 3px solid var(--text-color);
