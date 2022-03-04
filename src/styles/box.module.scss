@@ -67,3 +67,9 @@
 .top {
   color: var(--text-color-secondary);
 }
+@media only screen and (max-width: 650px) {
+  .movingBox {
+    width: 20em;
+    height: 12em;
+  }
+}
