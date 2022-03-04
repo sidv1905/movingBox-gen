@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import AddButton from "../Buttons/AddButton";
 import ClearButton from "../Buttons/ClearButton";
+import CheckBox from "../CheckBox/CheckBox";
+
 import RectangularFence from "../RectangularFence/RectangularFence";
 import MovingBox from "./MovingBox";
 
@@ -59,6 +61,7 @@ export default function MovingBoxContainer() {
         <AddButton addBox={addBox} />
         <ClearButton reset={reset} />
       </div>
+      <CheckBox />
     </RectangularFence>
   );
 }

@@ -10,6 +10,7 @@
   right: 10%;
   width: 19em;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -39,4 +40,14 @@
 
 .box-animate {
   background-color: red;
+}
+.checkbox-container {
+  position: absolute;
+  bottom: 3em;
+  left: 3em;
+  display: flex;
+  align-items: center;
+  width: 15em;
+  justify-content: space-between;
+  margin-top: 2em;
 }
