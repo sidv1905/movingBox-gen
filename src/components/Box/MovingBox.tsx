@@ -19,35 +19,18 @@ export default function MovingBox({
   const [selected, setSelected] = useState(false);
   const position = useRef({ x: 0, y: 0 });
 
-  const boxRef = useRef<HTMLDivElement>(null);
+  const boxRef: any = useRef(null);
   useEffect(() => {
     boxRef.current.style.zIndex = zIndex.toString();
     boxRef.current.style.top = zIndex * 100 + "px";
     boxRef.current.style.left = zIndex * 100 + "px";
   }, []);
-  function handleMouseDown(e) {
+  function handleMouseDown(e: MouseEventInit) {
     setPressed(true);
     setSelected(!selected);
   }
 
-  function handleMouseMove(e: any) {
-    //right 1
-    //left -1
-    //top -1
-    //bottom 1
-    //  (verifyPosition() !== 1 && e.movementX != 1) ||
-    // (verifyPosition() !== 2 && e.movementY != -1) ||
-    // (verifyPosition() !== 3 && e.movementY != 1)
-
-    position.current = {
-      x: position.current.x + e.movementX,
-      y: position.current.y + e.movementY,
-    };
-
-    MoveTheBoxTransform(position.current.x, position.current.y);
-  }
-
-  function MoveTheBoxTransform(x, y) {
+  function MoveTheBoxTransform(x: number, y: number): void {
     boxRef.current.style.transform = `translate(${x}px,${y}px)`;
   }
   function handleMouseUp() {
@@ -61,7 +44,7 @@ export default function MovingBox({
     console.log(window.innerWidth, "window width");
     console.log(window.innerHeight, "window height");
 
-    const { left, right, bottom, top, width, height } =
+    const { left, right, bottom, top, width, height }: DOMRect =
       boxRef.current?.getBoundingClientRect();
     if (left < 0) {
       console.log("left violation bounds");
@@ -81,17 +64,16 @@ export default function MovingBox({
   useEffect(() => {
     if (pressed) {
       console.log("moving");
-      document.addEventListener("mousemove", handleMouseMove);
+
       document.addEventListener("mouseup", handleMouseUp);
     }
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [pressed]);
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: KeyboardEvent) {
     e.preventDefault();
     console.log("key down");
     verifyPosition();
