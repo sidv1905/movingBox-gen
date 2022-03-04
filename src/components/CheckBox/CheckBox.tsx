@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ToggleContext } from "../../contexts/ToggleContext";
 import "../../styles/checkbox.css";
 export default function CheckBox() {
-  const [checkedbox, setCheckedbox] = React.useState(false);
+  const { checkboxCheck, setCheckboxCheck } = useContext(ToggleContext);
   function handleCheckbox() {
     console.log("checkbox clicked");
-    setCheckedbox(!checkedbox);
+    setCheckboxCheck(!checkboxCheck);
   }
   return (
     <div className="checkbox-container">
       <p>WASD</p>
       <label className="switch">
-        <input type="checkbox" checked={checkedbox} onChange={handleCheckbox} />
+        <input
+          type="checkbox"
+          checked={checkboxCheck}
+          onChange={handleCheckbox}
+        />
         <span className="slider round"></span>
       </label>
       <p>ARROW KEYS</p>

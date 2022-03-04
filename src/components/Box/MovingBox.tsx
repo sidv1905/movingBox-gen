@@ -1,4 +1,10 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "../../styles/box.module.scss";
 import visaLogo from "../../assets/images/visa.svg";
 import useKeyboardHandler from "../../hooks/useKeyboardHandler";
@@ -6,6 +12,7 @@ import checked from "../../assets/images/checkbox-checked.svg";
 import unchecked from "../../assets/images/checkbox-unchecked.svg";
 import useMouseHandler from "../../hooks/useMouseHandler";
 import useThrottle from "../../hooks/useThrottle";
+import { ToggleContext } from "../../contexts/ToggleContext";
 interface BoxProps {
   zIndex: number;
   positionInArray: number;
@@ -17,6 +24,7 @@ export default function MovingBox({
   positionInArray,
   removeBox,
 }: BoxProps) {
+  const { checkboxCheck } = useContext(ToggleContext);
   const [selected, setSelected] = useState(false);
 
   const boxRef: any = useRef(null);
@@ -29,6 +37,7 @@ export default function MovingBox({
     setSelected,
     removeBox,
     positionInArray,
+    checkboxCheck,
   });
 
   const { handleMouseDown } = useMouseHandler({

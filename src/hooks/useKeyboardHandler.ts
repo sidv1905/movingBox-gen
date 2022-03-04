@@ -9,6 +9,7 @@ interface Props {
   position: { current: { x: number; y: number } };
   positionInArray: number;
   removeBox: (positionInArray: number) => void;
+  checkboxCheck: boolean;
 }
 
 export default function useKeyboardHandler({
@@ -18,7 +19,9 @@ export default function useKeyboardHandler({
   setSelected,
   removeBox,
   positionInArray,
+  checkboxCheck,
 }: Props) {
+  console.log(checkboxCheck, "CHECKBOX VALUE");
   const throttler = useThrottle();
   useEffect(() => {
     if (selected) {
@@ -50,37 +53,37 @@ export default function useKeyboardHandler({
   // Handles key down event
   function handleKeyDown(e: KeyboardEvent) {
     e.preventDefault();
-    function moveBox() {
+    function moveBoxByArrowKeysorWASD() {
       verifyPosition();
       switch (e.keyCode) {
-        case 37:
+        case checkboxCheck ? 37 : 65:
           if (verifyPosition() !== DIRECTIONS.LEFT) {
             position.current.x -= 30;
             MoveTheBoxTransform(position.current.x, position.current.y);
           }
 
           break;
-        case 38:
+        case checkboxCheck ? 38 : 87:
           if (verifyPosition() !== DIRECTIONS.TOP) {
             position.current.y -= 30;
             MoveTheBoxTransform(position.current.x, position.current.y);
           }
 
           break;
-        case 39:
+        case checkboxCheck ? 39 : 68:
           if (verifyPosition() !== DIRECTIONS.RIGHT) {
             position.current.x += 30;
             MoveTheBoxTransform(position.current.x, position.current.y);
           }
           break;
-        case 40:
+        case checkboxCheck ? 40 : 83:
           if (verifyPosition() !== DIRECTIONS.BOTTOM) {
             position.current.y += 30;
             MoveTheBoxTransform(position.current.x, position.current.y);
           }
 
           break;
-        case 46:
+        case 46 || 8:
           if (selected) {
             removeBox(positionInArray);
           }
@@ -90,7 +93,7 @@ export default function useKeyboardHandler({
       }
     }
 
-    throttler(moveBox, 200);
+    throttler(moveBoxByArrowKeysorWASD, 200);
   }
   return {
     handleKeyDown,

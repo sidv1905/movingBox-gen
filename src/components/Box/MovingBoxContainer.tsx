@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddButton from "../Buttons/AddButton";
 import ClearButton from "../Buttons/ClearButton";
 import CheckBox from "../CheckBox/CheckBox";
-
+import { ToggleContext } from "../../contexts/ToggleContext";
 import RectangularFence from "../RectangularFence/RectangularFence";
 import MovingBox from "./MovingBox";
 
@@ -11,6 +11,7 @@ interface MovingBox {
   key?: number;
 }
 export default function MovingBoxContainer() {
+  const [checkboxCheck, setCheckboxCheck] = useState(false);
   const [movingBoxList, setMovingBoxList] = useState<MovingBox[]>([
     {
       zIndex: 1,
@@ -46,22 +47,24 @@ export default function MovingBoxContainer() {
     ]);
   }
   return (
-    <RectangularFence>
-      {movingBoxList.map((box, index) => {
-        return (
-          <MovingBox
-            key={box.key}
-            zIndex={box.zIndex}
-            positionInArray={index}
-            removeBox={removeBox}
-          />
-        );
-      })}
-      <div className="btn-container">
-        <AddButton addBox={addBox} />
-        <ClearButton reset={reset} />
-      </div>
-      <CheckBox />
-    </RectangularFence>
+    <ToggleContext.Provider value={{ checkboxCheck, setCheckboxCheck }}>
+      <RectangularFence>
+        {movingBoxList.map((box, index) => {
+          return (
+            <MovingBox
+              key={box.key}
+              zIndex={box.zIndex}
+              positionInArray={index}
+              removeBox={removeBox}
+            />
+          );
+        })}
+        <div className="btn-container">
+          <AddButton addBox={addBox} />
+          <ClearButton reset={reset} />
+        </div>
+        <CheckBox />
+      </RectangularFence>
+    </ToggleContext.Provider>
   );
 }
