@@ -3,5 +3,9 @@ interface ClearButtonProps {
   reset: () => void;
 }
 export default function ClearButton({ reset }: ClearButtonProps) {
-  return <button onClick={reset}>ClearButton</button>;
+  return (
+    <button className="clearButton" onClick={reset}>
+      Reset
+    </button>
+  );
 }

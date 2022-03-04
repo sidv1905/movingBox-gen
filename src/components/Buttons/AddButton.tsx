@@ -5,5 +5,9 @@ interface AddButtonProps {
 }
 
 export default function AddButton({ addBox }: AddButtonProps) {
-  return <button onClick={addBox}>AddButton</button>;
+  return (
+    <button className="addButton" onClick={addBox}>
+      Add
+    </button>
+  );
 }

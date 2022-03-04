@@ -49,8 +49,10 @@ export default function MovingBoxContainer() {
           />
         );
       })}
-      <AddButton addBox={addBox} />
-      <ClearButton reset={reset} />
+      <div className="btn-container">
+        <AddButton addBox={addBox} />
+        <ClearButton reset={reset} />
+      </div>
     </RectangularFence>
   );
 }
