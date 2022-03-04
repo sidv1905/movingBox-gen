@@ -31,6 +31,14 @@ export default function MovingBox({
   }
 
   function handleMouseMove(e: any) {
+    //right 1
+    //left -1
+    //top -1
+    //bottom 1
+    //  (verifyPosition() !== 1 && e.movementX != 1) ||
+    // (verifyPosition() !== 2 && e.movementY != -1) ||
+    // (verifyPosition() !== 3 && e.movementY != 1)
+
     position.current = {
       x: position.current.x + e.movementX,
       y: position.current.y + e.movementY,
