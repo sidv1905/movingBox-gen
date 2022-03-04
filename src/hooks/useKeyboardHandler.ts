@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { DIRECTIONS } from "../constants/validations.js";
+import useThrottle from "./useThrottle.js";
 
 interface Props {
   selected: boolean;
@@ -18,6 +19,7 @@ export default function useKeyboardHandler({
   removeBox,
   positionInArray,
 }: Props) {
+  const throttler = useThrottle();
   useEffect(() => {
     if (selected) {
       document.addEventListener("keydown", handleKeyDown);
@@ -47,44 +49,47 @@ export default function useKeyboardHandler({
 
   function handleKeyDown(e: KeyboardEvent) {
     e.preventDefault();
+    function moveBox() {
+      verifyPosition();
+      switch (e.keyCode) {
+        case 37:
+          if (verifyPosition() !== DIRECTIONS.LEFT) {
+            position.current.x -= 30;
+            MoveTheBoxTransform(position.current.x, position.current.y);
+          }
 
-    verifyPosition();
-    switch (e.keyCode) {
-      case 37:
-        if (verifyPosition() !== DIRECTIONS.LEFT) {
-          position.current.x -= 10;
-          MoveTheBoxTransform(position.current.x, position.current.y);
-        }
+          break;
+        case 38:
+          if (verifyPosition() !== DIRECTIONS.TOP) {
+            position.current.y -= 30;
+            MoveTheBoxTransform(position.current.x, position.current.y);
+          }
 
-        break;
-      case 38:
-        if (verifyPosition() !== DIRECTIONS.TOP) {
-          position.current.y -= 10;
-          MoveTheBoxTransform(position.current.x, position.current.y);
-        }
+          break;
+        case 39:
+          if (verifyPosition() !== DIRECTIONS.RIGHT) {
+            position.current.x += 30;
+            MoveTheBoxTransform(position.current.x, position.current.y);
+          }
+          break;
+        case 40:
+          if (verifyPosition() !== DIRECTIONS.BOTTOM) {
+            position.current.y += 30;
+            MoveTheBoxTransform(position.current.x, position.current.y);
+          }
 
-        break;
-      case 39:
-        if (verifyPosition() !== DIRECTIONS.RIGHT) {
-          position.current.x += 10;
-          MoveTheBoxTransform(position.current.x, position.current.y);
-        }
-        break;
-      case 40:
-        if (verifyPosition() !== DIRECTIONS.BOTTOM) {
-          position.current.y += 10;
-          MoveTheBoxTransform(position.current.x, position.current.y);
-        }
+          break;
+        case 46:
+          if (selected) {
+            removeBox(positionInArray);
+          }
 
-        break;
-      case 46:
-        if (selected) {
-          removeBox(positionInArray);
-        }
-
-      default:
-        break;
+        default:
+          break;
+      }
     }
+
+    throttler(moveBox, 200);
   }
   return {
     handleKeyDown,

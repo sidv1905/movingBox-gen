@@ -5,6 +5,7 @@ import useKeyboardHandler from "../../hooks/useKeyboardHandler";
 import checked from "../../assets/images/checkbox-checked.svg";
 import unchecked from "../../assets/images/checkbox-unchecked.svg";
 import useMouseHandler from "../../hooks/useMouseHandler";
+import useThrottle from "../../hooks/useThrottle";
 interface BoxProps {
   zIndex: number;
   positionInArray: number;
