@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/box.module.scss";
 import visaLogo from "../../assets/images/visa.svg";
-import circle from "../.../assets/images/circle.svg";
+
+import checked from "../../assets/images/checkbox-checked.svg";
+import unchecked from "../../assets/images/checkbox-unchecked.svg";
 interface BoxProps {
   zIndex: number;
   positionInArray: number;
@@ -103,7 +105,14 @@ export default function MovingBox({
           : styles.movingBox
       }
     >
-      <div className={styles.top}>Credit</div>
+      <div className={styles.top}>
+        <img
+          height={40}
+          width={40}
+          src={selected ? checked : unchecked}
+          alt="check"
+        />
+      </div>
       <div className={styles.middle}>1860 2000 9000 7865</div>
 
       <div className={styles.bottom}>

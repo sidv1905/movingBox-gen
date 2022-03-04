@@ -25,7 +25,14 @@
   font-size: 1em;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease-in;
   &:hover {
     background-color: #0a2c5a;
+    transform: scale(1.05);
+  }
+  &:active {
+    background-color: #0a2c5a;
+    transform: scale(0.9);
+    border-color: 1px solid white;
   }
 }
